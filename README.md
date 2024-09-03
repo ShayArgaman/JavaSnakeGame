@@ -56,24 +56,6 @@ This is a classic Snake Game implemented in Java using Swing. The game includes 
 - `README.md`: This file.
 - `.gitignore`: Specifies files and directories to be ignored by Git.
 
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit pull requests for any enhancements or bug fixes.
-
-1. Fork the repository.
-2. Create your feature branch:
-    ```bash
-    git checkout -b feature/YourFeature
-    ```
-3. Commit your changes:
-    ```bash
-    git commit -m 'Add your feature'
-    ```
-4. Push to the branch:
-    ```bash
-    git push origin feature/YourFeature
-    ```
-5. Open a pull request.
 
 ## Acknowledgments
 
