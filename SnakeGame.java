@@ -94,7 +94,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
         try {
         	String resourcePath = System.getProperty("user.dir") + File.separator 
-        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "apple.png";
+        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "images" + File.separator + "apple.png";
                         
             File file = new File(resourcePath);
             
@@ -106,7 +106,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
         try {
         	String resourcePath = System.getProperty("user.dir") + File.separator 
-        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "mine.png";
+        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "images" + File.separator+ "mine.png";
                         
             File file = new File(resourcePath);
             
@@ -117,7 +117,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         
         try {
         	String resourcePath = System.getProperty("user.dir") + File.separator 
-        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "godmode.png";
+        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "images" + File.separator + "godmode.png";
         	
             File file = new File(resourcePath);
 
