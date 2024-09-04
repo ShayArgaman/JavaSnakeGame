@@ -86,23 +86,42 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         gameLoop.start();
 
         // Highscore - read
-        Highscore highscoreManager = new Highscore("C:\\Users\\User\\eclipse-workspace\\firstyear\\MyProject\\SnakeGame\\highscore.txt");
+    	String highscoreResourcePath = System.getProperty("user.dir") + File.separator 
+    	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "highscore.txt";
+    	
+        Highscore highscoreManager = new Highscore(highscoreResourcePath);
         highscore = highscoreManager.readHighScore();
 
         try {
-            appleImage = ImageIO.read(new File("C:\\Users\\User\\eclipse-workspace\\firstyear\\MyProject\\SnakeGame\\apple.png"));
+        	String resourcePath = System.getProperty("user.dir") + File.separator 
+        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "apple.png";
+                        
+            File file = new File(resourcePath);
+            
+            appleImage = ImageIO.read(file); 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+
         try {
-            mineImage = ImageIO.read(new File("C:\\Users\\User\\eclipse-workspace\\firstyear\\MyProject\\SnakeGame\\mine.png"));
+        	String resourcePath = System.getProperty("user.dir") + File.separator 
+        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "mine.png";
+                        
+            File file = new File(resourcePath);
+            
+            mineImage = ImageIO.read(file); 
         } catch (IOException e) {
             e.printStackTrace();
         }
         
         try {
-        	godmodeImage = ImageIO.read(new File("C:\\Users\\User\\eclipse-workspace\\firstyear\\MyProject\\SnakeGame\\godmode.png"));
+        	String resourcePath = System.getProperty("user.dir") + File.separator 
+        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "godmode.png";
+        	
+            File file = new File(resourcePath);
+
+        	godmodeImage = ImageIO.read(file); 
         } catch (IOException e) {
             e.printStackTrace();
         }
