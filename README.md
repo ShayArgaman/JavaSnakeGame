@@ -3,6 +3,7 @@
 Developed a Java-based Snake Game with Swing, incorporating modern features like mines, a temporary invincibility mode (god mode), and a dynamic high score tracking system. The game delivers an enhanced, engaging experience with progressively challenging levels, offering a fresh twist on the classic gameplay.
 
 
+
 <img src="https://github.com/user-attachments/assets/55714918-006e-4a17-8ab5-11416f4797d9" width="400"/>
 
 ## Features
