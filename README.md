@@ -1,22 +1,23 @@
-# Java Snake Game
+# 🐍 Java Snake Game
 
 Developed a Java-based Snake Game with Swing, incorporating modern features like mines, a temporary invincibility mode (god mode), and a dynamic high score tracking system. The game delivers an enhanced, engaging experience with progressively challenging levels, offering a fresh twist on the classic gameplay.
+
 
 <img src="https://github.com/user-attachments/assets/55714918-006e-4a17-8ab5-11416f4797d9" width="400"/>
 
 ## Features
 
-- Classic snake gameplay with increasing difficulty.
-- Mines that the snake must avoid.
-- God mode for temporary invincibility.
-- High score tracking.
+- 🐍 Classic snake gameplay with increasing difficulty.
+- 💣 Mines that the snake must avoid.
+- ✨ God mode for temporary invincibility.
+- 🏆 High score tracking.
 
 ## Getting Started
 
 ### Prerequisites
 
-- Java Development Kit (JDK) 8 or higher
-- An IDE or text editor (e.g., Eclipse, IntelliJ IDEA, VSCode)
+- ☕ Java Development Kit (JDK) 8 or higher
+- 🛠️ An IDE or text editor (e.g., Eclipse, IntelliJ IDEA, VSCode)
 
 ### Installation
 
@@ -40,9 +41,9 @@ Developed a Java-based Snake Game with Swing, incorporating modern features like
 
 ### Controls
 
-- **Arrow Keys / WASD**: Move the snake
-- **P**: Pause the game
-- **Enter**: Start or restart the game
+- **⬅️⬆️⬇️➡️ / WASD**: Move the snake
+- **⏸️ P**: Pause the game
+- **↩️ Enter**: Start or restart the game
 
 ## Project Structure
 
@@ -61,5 +62,5 @@ Developed a Java-based Snake Game with Swing, incorporating modern features like
 
 ## Acknowledgments
 
-- Inspired by the classic Snake game.
-- Thanks to the open-source community for various resources and tools.
+- 🎮 Inspired by the classic Snake game.
+- 🙌 Thanks to the open-source community for various resources and tools.
