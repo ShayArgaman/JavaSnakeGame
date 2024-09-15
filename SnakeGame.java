@@ -366,8 +366,8 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
                 highScoreMessageStart = System.currentTimeMillis();
         	}
             highscore = snakeBody.size();
-            Highscore highscoreManager = new Highscore("C:\\Users\\User\\eclipse-workspace\\firstyear\\MyProject\\SnakeGame\\highscore.txt");
-            highscoreManager.saveHighScore(highscore);
+            String highscorePath = System.getProperty("user.dir") + File.separator + "highscore.txt";
+            Highscore highscoreManager = new Highscore(highscorePath);
             newHighScore = true;
         }
 
