@@ -363,7 +363,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         // Check and save new high score
         if (snakeBody.size() > highscore) {
         	if(!newHighScore) {
-                highScoreMessageStart = System.currentTimeMillis();
+                	highScoreMessageStart = System.currentTimeMillis();
         	}
             highscore = snakeBody.size();
             String highscorePath = System.getProperty("user.dir") + File.separator + "highscore.txt";
