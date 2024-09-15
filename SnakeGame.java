@@ -221,10 +221,6 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
                    messageWidth + 20, messageHeight + 20);
         g.setColor(Color.YELLOW);
         g.drawString(message, boardWidth/2 - messageWidth/2, boardHeight/2 + messageHeight/4);
-        
-        //if (System.currentTimeMillis() - highScoreMessageStart > HIGH_SCORE_MESSAGE_DURATION) {
-        //    newHighScore = false; // Reset the flag after the message duration
-        //}
     }
     
     private void gamePause() {
