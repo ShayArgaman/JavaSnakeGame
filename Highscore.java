@@ -7,6 +7,18 @@ public class Highscore {
 
     public Highscore(String filePath) {
         this.filePath = filePath;
+        createFileIfNotExists();
+    }
+
+    private void createFileIfNotExists() {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public int readHighScore() {
