@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.Timer;
 
 public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
@@ -27,7 +26,6 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     int boardHeight;
     int tileSize = 25;
     int speed = 100;
-    private int score;
 
     // Snake
     Tile snakeHead;
@@ -45,7 +43,6 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     BufferedImage mineImage;
     BufferedImage godmodeImage;
 
- 
     // Game Logic
     Timer gameLoop;
     int velocityX;
@@ -60,9 +57,15 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     private long highScoreMessageStart = 0;
     private final int HIGH_SCORE_MESSAGE_DURATION = 3000; // Display for 3 seconds
     
+    // Resource path
+    private final String resourcePath;
+
     SnakeGame(int boardWidth, int boardHeight) {
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
+        this.resourcePath = System.getProperty("user.dir") + File.separator
+                + "MyProject" + File.separator + "SnakeGame" + File.separator;
+        
         setPreferredSize(new Dimension(this.boardWidth, this.boardHeight));
         setBackground(Color.black);
         addKeyListener(this);
@@ -70,58 +73,41 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
         snakeHead = new Tile(5, 5);
         snakeBody = new ArrayList<>();
-        mineBody = new ArrayList<>();
 
         food = new Tile(10, 10);
         mine = new Tile(15, 15);
         godmode = new Tile(10, 10);
-        random = new Random();
+        this.random = new Random();
         placeFood();
         placeMine();
 
         velocityX = 0;
         velocityY = 1;
 
+        // Initialize game loop timer
         gameLoop = new Timer(speed, this);
         gameLoop.start();
-
         // Highscore - read
-    	String highscoreResourcePath = System.getProperty("user.dir") + File.separator 
-    	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "highscore.txt";
-    	
+        String highscoreResourcePath = System.getProperty("user.dir") + File.separator
+                + "MyProject" + File.separator + "SnakeGame" + File.separator + "highscore.txt";
+
         Highscore highscoreManager = new Highscore(highscoreResourcePath);
         highscore = highscoreManager.readHighScore();
 
+        // Loading resources when running with Eclipse
         try {
-        	String resourcePath = System.getProperty("user.dir") + File.separator 
-        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "images" + File.separator + "apple.png";
-                        
+            String resourcePath = this.resourcePath + "images/apple.png";
             File file = new File(resourcePath);
+            appleImage = ImageIO.read(file);
             
-            appleImage = ImageIO.read(file); 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        try {
-        	String resourcePath = System.getProperty("user.dir") + File.separator 
-        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "images" + File.separator+ "mine.png";
-                        
-            File file = new File(resourcePath);
+        	String resourcePath2 = this.resourcePath + "images/mine.png";
+            File file2 = new File(resourcePath2);
+            mineImage = ImageIO.read(file2);
             
-            mineImage = ImageIO.read(file); 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        try {
-        	String resourcePath = System.getProperty("user.dir") + File.separator 
-        	        + "MyProject" + File.separator + "SnakeGame" + File.separator + "images" + File.separator + "godmode.png";
-        	
-            File file = new File(resourcePath);
-
-        	godmodeImage = ImageIO.read(file); 
+            String resourcePath3 = this.resourcePath + "images/godmode.png";
+            File file3 = new File(resourcePath3);
+            godmodeImage = ImageIO.read(file3);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -209,7 +195,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
             g.drawString("Press Enter to Start", boardWidth / 2 - 135, boardHeight / 2);
         }
     }
-    
+
     private void drawHighScoreMessage(Graphics g) {
         String message = "NEW HIGH SCORE!";
         g.setFont(new Font("Arial", Font.BOLD, 36));
@@ -217,12 +203,12 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         FontMetrics fm = g.getFontMetrics();
         int messageWidth = fm.stringWidth(message);
         int messageHeight = fm.getHeight();
-        g.fillRect(boardWidth/2 - messageWidth/2 - 10, boardHeight/2 - messageHeight/2 - 10, 
-                   messageWidth + 20, messageHeight + 20);
+        g.fillRect(boardWidth / 2 - messageWidth / 2 - 10, boardHeight / 2 - messageHeight / 2 - 10,
+                messageWidth + 20, messageHeight + 20);
         g.setColor(Color.YELLOW);
-        g.drawString(message, boardWidth/2 - messageWidth/2, boardHeight/2 + messageHeight/4);
+        g.drawString(message, boardWidth / 2 - messageWidth / 2, boardHeight / 2 + messageHeight / 4);
     }
-    
+
     private void gamePause() {
         paused = true;
         repaint();
@@ -256,7 +242,6 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
             godmode.y = random.nextInt(boardHeight / tileSize);
         } while (collision(food, godmode) || collision(snakeHead, godmode) || collision(mine, godmode));
     }
-    
 
     public void activateGodmode() {
         godmodeOn = true;
@@ -269,8 +254,8 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
             scheduleGodmodeReappearance();
         }).start();
     }
-    
- // Schedule godmode to reappear at a random time
+
+    // Schedule godmode to reappear at a random time
     private void scheduleGodmodeReappearance() {
         int randomTime = random.nextInt(15000) + 5000; // 5 to 20 seconds
         new Timer(randomTime, e -> {
@@ -278,25 +263,25 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
             ((Timer) e.getSource()).stop();
         }).start();
     }
-    
+
     public boolean collision(Tile tile1, Tile tile2) {
         return tile1.x == tile2.x && tile1.y == tile2.y;
     }
 
-    public void move() { 
+    public void move() {
         // Check for Godmode collision
         if (godmode != null && collision(snakeHead, godmode)) {
             placeGodMode();
             activateGodmode();
             godmode = null; // Remove the godmode item
         }
-        
+
         // Eat food
         if (collision(snakeHead, food)) {
             snakeBody.add(new Tile(food.x, food.y));
             placeFood();
             placeMine();
-            
+
             // Increase speed every 2nd time the snake eats food
             if (speed > 50 && snakeBody.size() % 2 == 0) {
                 speed -= 5;
@@ -335,19 +320,17 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         }
 
         // Snake hits borders
-		if(snakeHead.y*tileSize < 0 ) {
-			snakeHead.y=boardHeight / tileSize - 1 ;
-		}
-		else if(snakeHead.y*tileSize==boardHeight) {
-			snakeHead.y=0;
-		}
+        if (snakeHead.y * tileSize < 0) {
+            snakeHead.y = boardHeight / tileSize - 1;
+        } else if (snakeHead.y * tileSize == boardHeight) {
+            snakeHead.y = 0;
+        }
 
-		if(snakeHead.x*tileSize==boardWidth) {
-			snakeHead.x=0;
-		}
-		else if(snakeHead.x*tileSize < 0) {
-			snakeHead.x=boardWidth / tileSize - 1;
-		}
+        if (snakeHead.x * tileSize == boardWidth) {
+            snakeHead.x = 0;
+        } else if (snakeHead.x * tileSize < 0) {
+            snakeHead.x = boardWidth / tileSize - 1;
+        }
     }
 
     @Override
@@ -358,12 +341,13 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
         // Check and save new high score
         if (snakeBody.size() > highscore) {
-        	if(!newHighScore) {
-                	highScoreMessageStart = System.currentTimeMillis();
-        	}
+            if (!newHighScore) {
+                highScoreMessageStart = System.currentTimeMillis();
+            }
             highscore = snakeBody.size();
-            String highscorePath = System.getProperty("user.dir") + File.separator + "highscore.txt";
-            Highscore highscoreManager = new Highscore(highscorePath);
+            
+            Highscore highscoreManager = new Highscore(resourcePath + "highscore.txt");
+            highscoreManager.saveHighScore(highscore); // Save the new high score
             newHighScore = true;
         }
 
@@ -374,8 +358,8 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         if (!gameOver && !paused) {
             switch (e.getKeyCode()) {
-            	case KeyEvent.VK_UP:
-            	case KeyEvent.VK_W:
+                case KeyEvent.VK_UP:
+                case KeyEvent.VK_W:
                     if (velocityY != 1) {
                         velocityX = 0;
                         velocityY = -1;
@@ -412,7 +396,6 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
             // Reset game
             snakeHead = new Tile(5, 5);
             snakeBody.clear();
-            score = 0;
             speed = 100;
             velocityX = 0;
             velocityY = 1;
