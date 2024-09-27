@@ -52,15 +52,12 @@ Developed a Java-based Snake Game with Swing, incorporating modern features like
   - `App.java`: The main entry point for the game.
   - `Highscore.java`: Handles reading and updating the high score.
   - `SnakeGame.java`: Contains the game logic and rendering.
-  - `apple.java`: (Optional) A separate JFrame to display the apple image.
 - `images/`: Contains the image files used in the game.
   - `apple.png`: The image for the food.
   - `mine.png`: The image for the mines.
   - `godmode.png`: The image for the shield of godmode.
 - `highscore.txt`: Stores the high score.
 - `README.md`: This file.
-- `.gitignore`: Specifies files and directories to be ignored by Git.
-
 
 ## Acknowledgments
 
